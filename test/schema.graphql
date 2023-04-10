@@ -1,0 +1,54 @@
+type Query {
+  User(id: ID!): User!
+  AllPosts: [Post!]!
+  Search(query: String!): [SearchResult!]!
+}
+
+scalar DateTime
+
+interface Node {
+  id: ID!
+}
+
+type User implements Node {
+  id: ID!
+  name: String!
+  email: String!
+  createdAt: DateTime!
+  role: Role!
+}
+
+type Post implements Node {
+  id: ID!
+  title: String!
+  body: String!
+  author: User!
+  createdAt: DateTime!
+}
+
+union SearchResult = User | Post
+
+enum Role {
+  USER
+  ADMIN
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  role: Role!
+}
+
+type Mutation {
+  createUser(input: CreateUserInput!): User!
+}
+
+type Subscription {
+  postCreated: Post!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
