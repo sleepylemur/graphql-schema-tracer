@@ -2,13 +2,16 @@
   "name": "schema-tracer",
   "version": "1.0.0",
   "description": "Program for printing the possible query paths to a particular GraphQL entity",
-  "bin": "dist/index.js",
+  "engines" : { 
+    "node" : ">=16.0.0"
+  },
+  "bin": {"schema-tracer": "./dist/index.js"},
+  "main": "dist/index.js",
   "author": "Evan Griffiths",
   "license": "MIT",
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
     "@types/chai": "^4.3.4",
-    "@types/minimist": "^1.2.2",
     "@types/mocha": "^10.0.1",
     "@types/node": "16",
     "chai": "^4.3.7",
@@ -22,8 +25,6 @@
     "test": "mocha --require ts-node/register 'test/**/*.test.ts' --recursive"
   },
   "dependencies": {
-    "graphql": "^16.6.0",
-    "graphql-tools": "^8.3.19",
-    "minimist": "^1.2.8"
+    "graphql": "^16.6.0"
   }
 }
